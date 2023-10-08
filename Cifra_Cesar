@@ -1,0 +1,129 @@
+programa
+{
+	inclua biblioteca Texto --> t
+	inclua biblioteca Tipos --> tip
+	const cadeia alfabeto[26]={"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
+	
+	funcao inicio()
+	{
+		inteiro a, key
+		cadeia txt
+		escreva("Olá! Gostaria de criptografar sua mensagem? Se sim digite 1, se gostaria de descriptografar digite 2.\n")
+		leia(a)
+		se(a == 1){
+			escreva("Diga o que quer criptografar: ")
+			leia(txt)
+			escreva("\nAgora diga a chave: ")
+			leia(key)
+			criptografar(txt, key)
+		}
+		se(a == 2){
+			escreva("Diga a frase criptografada: ")
+			leia(txt)
+			escreva("\nAgora diga a chave, se você não sabe digite 27: ")
+			leia(key)
+			descriptografar(txt, key)
+		}
+	}
+	
+	funcao criptografar(cadeia texto, inteiro chave)
+	{
+		inteiro posicao
+		caracter letra_caracter
+		cadeia letra="Y"
+		inteiro numero_letras_frases=t.numero_caracteres(texto)
+		logico esta_no_alfabeto
+
+		para (inteiro h=0;h<numero_letras_frases;h++){
+			esta_no_alfabeto=falso
+
+			letra_caracter=t.obter_caracter(texto, h)
+			letra=tip.caracter_para_cadeia(letra_caracter)
+
+			para(inteiro i=0;i<26;i++){
+				
+				se(letra==alfabeto[i]){
+					posicao=i+chave
+					posicao=posicao%26
+					escreva(alfabeto[posicao])
+					esta_no_alfabeto=verdadeiro
+					pare
+				} 
+				
+			}
+			se(esta_no_alfabeto==falso){
+				escreva(letra)
+			}
+		}
+	}
+		funcao descriptografar(cadeia texto, inteiro chave)
+		{
+		inteiro posicao
+		caracter letra_caracter
+		cadeia letra="Y"
+		inteiro numero_letras_frases=t.numero_caracteres(texto)
+		logico esta_no_alfabeto
+
+    se(chave == 27){
+      escreva("Essas são as possíveis respostas: \n")
+      para(inteiro p=0; p<26; p++){
+        chave = p
+        para (inteiro h=0;h<numero_letras_frases;h++){
+          esta_no_alfabeto=falso
+
+          letra_caracter=t.obter_caracter(texto, h)
+          letra=tip.caracter_para_cadeia(letra_caracter)
+
+          para(inteiro i=0;i<26;i++){
+            
+            se(letra==alfabeto[i]){
+              posicao=i-chave
+
+              se(posicao<0){
+                posicao=posicao+26
+              }
+              escreva(alfabeto[posicao])
+              esta_no_alfabeto=verdadeiro
+              pare
+            } 
+            
+          }
+          se(esta_no_alfabeto==falso){
+            escreva(letra)
+          }
+          
+          
+        }
+        escreva("\n")
+      }
+   }
+   senao{
+          para (inteiro h=0;h<numero_letras_frases;h++){
+          esta_no_alfabeto=falso
+
+          letra_caracter=t.obter_caracter(texto, h)
+          letra=tip.caracter_para_cadeia(letra_caracter)
+
+          para(inteiro i=0;i<26;i++){
+            
+            se(letra==alfabeto[i]){
+              posicao=i-chave
+
+              se(posicao<0){
+                posicao=posicao+26
+              }
+              escreva(alfabeto[posicao])
+              esta_no_alfabeto=verdadeiro
+              pare
+            } 
+            
+          }
+          se(esta_no_alfabeto==falso){
+            escreva(letra)
+          }
+          
+          
+        }
+   }
+  }
+}
